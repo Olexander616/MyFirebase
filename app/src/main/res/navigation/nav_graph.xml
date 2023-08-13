@@ -31,5 +31,9 @@
         android:id="@+id/startFragment"
         android:name="com.example.my_firebase.start.StartFragment"
         android:label="StartFragment"
-        tools:layout="@layout/fragment_start"/>
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

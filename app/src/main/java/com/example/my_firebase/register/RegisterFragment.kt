@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.my_firebase.R
 import com.example.my_firebase.databinding.FragmentRegisterBinding
 import com.example.my_firebase.databinding.FragmentStartBinding
@@ -26,5 +27,21 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.btnRegoster.setOnClickListener{
+            viewModel.registerNewUser(
+                binding.etEmail.text.toString(),
+                binding.etPassword.text.toString(),
+                requireContext()
+            )
+            findNavController().navigate(R.id.action_registerFragment_to_startFragment)
+
+        binding.tvLogIn.setOnClickListener{
+            findNavController().popBackStack()
+        }
+        }
     }
 }
